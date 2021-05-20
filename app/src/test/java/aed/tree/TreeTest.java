@@ -39,4 +39,18 @@ public class TreeTest {
     var element1 = "Peirera";
     assertEquals(tree.contains(element1), expect);
   }
+
+  @Test
+  public void verifyIfTheMethodReplaceChangeValuesInTheTree() 
+    throws ComparableNotFoundException {
+    
+    var expectTrue = true;
+    var expectFalse = false;
+
+    var validValue = "Daniel";
+    var invalidValue = "Pereira";
+
+    assertEquals(tree.replace(validValue, "Replace"), expectTrue);
+    assertEquals(tree.replace(invalidValue, "Replace"), expectFalse);
+  }
 }
