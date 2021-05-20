@@ -5,6 +5,24 @@ import aed.util.Node;
 
 public class Stack<T> extends AbstractLinkedList<T> {
   
+  public Stack(){}
+
+  public Stack(T... values) {
+    for(var value : values) {
+      push(value);
+    }
+  }
+
+  public Stack(Stack<T> stack) {
+    if(stack == null) return;
+
+    var nextNode = firstNode;
+    while(nextNode != null) {
+      push(nextNode.getValue());
+      nextNode = nextNode.getNodeReferenceRight();
+    }
+  }
+
   @Override
   public Stack<T> clone() {
     

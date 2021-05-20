@@ -5,6 +5,24 @@ import aed.util.AbstractLinkedList;
 import aed.util.Node;
 
 public class Queue<T> extends AbstractLinkedList<T> {
+    
+  public Queue() {}
+  
+  public Queue(T... values) {
+    for(var value : values) {
+      add(value);
+    }
+  }
+
+  public Queue(Queue<T> queue) {
+    if(queue == null) return;
+
+    var nextNode = queue.firstNode;
+    while(nextNode != null) {
+      add(nextNode.getValue());
+    }
+  }
+
   public T pool() {
 
     if(isEmpty()) {

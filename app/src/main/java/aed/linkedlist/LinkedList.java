@@ -5,6 +5,24 @@ import aed.util.AbstractLinkedList;
 
 public class LinkedList <T> extends AbstractLinkedList <T>  {
   
+  public LinkedList(){}
+
+  public LinkedList(T... values) {
+    for(var value : values) {
+      add(value);
+    }
+  }
+
+  public LinkedList(LinkedList<T> linkedlist) {
+    if(linkedlist == null) return;
+    
+    Node nextNode = linkedlist.firstNode;
+    while(nextNode != null) {
+      add((T)nextNode.getValue());
+      nextNode = nextNode.getNodeReferenceRight();
+    }
+  }
+
   public void add(int index, T value) throws IndexOutOfBoundsException {
     
     if(index == length()) {
