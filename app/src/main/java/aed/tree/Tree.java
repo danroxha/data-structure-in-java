@@ -55,6 +55,15 @@ public class Tree<T> {
      
     return (root != null) ? value : null;
   }
+
+  public Boolean replace(T valueA, T valueB) throws ComparableNotFoundException {
+    if(!contains(valueA)) return false;
+
+    remove(valueA);
+    insert(valueB);
+
+    return true;
+  }
   
   public Integer size() {
     return sizeTree;
