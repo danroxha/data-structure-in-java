@@ -1,6 +1,7 @@
 package aed.util;
 
 import java.util.function.BiPredicate;
+import java.util.Objects;
 
 public abstract class AbstractLinkedList<T> {
   
@@ -77,6 +78,26 @@ public abstract class AbstractLinkedList<T> {
 
   public Boolean isEmpty() {
     return length() == 0;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if(obj == null) return false;
+    if(this == obj) return true;
+
+    return hashCode() == obj.hashCode();
+  }
+
+  @Override
+  public int hashCode() {
+    
+    var hash = new StringBuilder();
+    var nextNode = firstNode;
+    while(nextNode != null) {
+      hash.append(nextNode.getValue());
+    }
+
+    return Objects.hash(hash.toString());
   }
   
   protected void sizeIncrement() {
