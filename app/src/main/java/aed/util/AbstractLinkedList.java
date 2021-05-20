@@ -95,6 +95,7 @@ public abstract class AbstractLinkedList<T> {
     var nextNode = firstNode;
     while(nextNode != null) {
       hash.append(nextNode.getValue());
+      nextNode = nextNode.getNodeReferenceRight();
     }
 
     return Objects.hash(hash.toString());
