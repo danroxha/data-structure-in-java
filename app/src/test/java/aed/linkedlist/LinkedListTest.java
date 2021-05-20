@@ -22,6 +22,14 @@ public class LinkedListTest {
     linkedlist.add("Rocha");
     linkedlist.add("Silva");
   }
+
+  @Test
+  public void shouldSettingValuesWithConstructor() {
+    var list = new LinkedList<String>(linkedlist);
+    var expect = true;
+
+    assertEquals(list.equals(linkedlist), expect);
+  }
     
   @Test 
   public void shouldAddElementsOntheListLinked() {
