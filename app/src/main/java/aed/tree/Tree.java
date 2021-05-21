@@ -13,6 +13,11 @@ public class Tree<T> {
   protected Integer sizeTree = 0;
   protected BiFunction<T, T, Integer> comparator = null;
 
+  public Boolean contains(T value) {
+    Node targetNode = recursiveContains(root, value);
+    return targetNode != null;
+  }
+
   public void forEach(Consumer<? super T> action) {
     walk(root, action);
   }
@@ -74,10 +79,7 @@ public class Tree<T> {
     return sizeTree;
   }
 
-  public Boolean contains(T value) {
 
-    Node targetNode = recursiveContains(root, value);
-    return targetNode != null;
   }
 
   private Node recursiveContains(Node node, T value) {
