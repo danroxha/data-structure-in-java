@@ -1,6 +1,7 @@
 package aed.tree;
 
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import aed.tree.exceptions.ComparableNotFoundException;
@@ -11,6 +12,10 @@ public class Tree<T> {
   protected Node<T> root = null;
   protected Integer sizeTree = 0;
   protected BiFunction<T, T, Integer> comparator = null;
+
+  public void forEach(Consumer<? super T> action) {
+    walk(root, action);
+  }
 
   public void insert(T value) throws ComparableNotFoundException {
 
@@ -182,5 +187,14 @@ public class Tree<T> {
       node = node.getNodeReferenceLeft();
     }
     return node;
+  }
+
+  private void walk(Node<T> node, Consumer<? super T> action) {
+     
+    if(node == null) return;
+    
+    walk(node.getNodeReferenceLeft(), action);
+    action.accept(node.getValue());
+    walk(node.getNodeReferenceRight(), action);
   }
 }
