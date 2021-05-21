@@ -113,8 +113,7 @@ public class Tree<T> {
       }
     }
     
-    return node;
-    
+    return node;  
   }
 
   protected void sizeIncrement() {
