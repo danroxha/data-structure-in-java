@@ -11,7 +11,7 @@ import aed.linkedlist.LinkedList;
 public class Tree<T> {
   
   protected Node<T> root = null;
-  protected Integer sizeTree = 0;
+  protected int sizeTree = 0;
   protected BiFunction<T, T, Integer> comparator = null;
   protected LinkedList<T> list = null;
 
@@ -77,7 +77,7 @@ public class Tree<T> {
     return true;
   }
   
-  public Integer size() {
+  public int size() {
     return sizeTree;
   }
 
