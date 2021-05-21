@@ -6,12 +6,14 @@ import java.util.function.Predicate;
 
 import aed.tree.exceptions.ComparableNotFoundException;
 import aed.util.Node;
+import aed.linkedlist.LinkedList;
 
 public class Tree<T> {
   
   protected Node<T> root = null;
   protected Integer sizeTree = 0;
   protected BiFunction<T, T, Integer> comparator = null;
+  protected LinkedList<T> list = null;
 
   public Boolean contains(T value) {
     Node targetNode = recursiveContains(root, value);
@@ -79,7 +81,14 @@ public class Tree<T> {
     return sizeTree;
   }
 
+  public LinkedList<T> toLinkedList() {
+    list = new LinkedList<>();
 
+    walk(root, value -> {
+      list.add(value);
+    });
+
+    return list;
   }
 
   private Node recursiveContains(Node node, T value) {
