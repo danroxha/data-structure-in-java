@@ -53,4 +53,15 @@ public class TreeTest {
     assertEquals(tree.replace(validValue, "Replace"), expectTrue);
     assertEquals(tree.replace(invalidValue, "Replace"), expectFalse);
   }
+
+  @Test
+  public void shouldReturnALinkedListFromTree() {
+    var list = tree.toLinkedList();
+
+    assertEquals(list.length(), tree.size());
+
+    for(int i = 0; i < list.length(); i++) {
+      System.out.println(list.get(i));
+    }
+  }
 }
