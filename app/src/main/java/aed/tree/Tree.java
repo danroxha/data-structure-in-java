@@ -16,8 +16,22 @@ public class Tree<T> {
   protected LinkedList<T> list = null;
 
   public Boolean contains(T value) {
-    Node targetNode = recursiveContains(root, value);
-    return targetNode != null;
+    
+    var current = root;
+
+    while(current != null) {
+      if(comparator.apply((T)value, (T)current.getValue()) < 0) {
+        current = current.getNodeReferenceLeft();
+      }
+      else if(comparator.apply((T)value, (T)current.getValue()) > 0) {
+        current = current.getNodeReferenceRight();
+      }
+      else {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   public void forEach(Consumer<? super T> action) {
@@ -89,31 +103,6 @@ public class Tree<T> {
     });
 
     return list;
-  }
-
-  private Node recursiveContains(Node node, T value) {
-    Node left = null, right = null;
-
-    if(comparator.apply((T)value, (T)node.getValue()) != 0) {
-      if(node.getNodeReferenceLeft() != null) {
-        left = recursiveContains(node.getNodeReferenceLeft(), value);
-      }
-
-      if(left == null) {
-        if(node.getNodeReferenceRight() != null)
-          right = recursiveContains(node.getNodeReferenceRight(), value);
-
-        if(right == null)
-          return null;
-        else
-          return right;
-      }
-      else {
-        return left;
-      }
-    }
-    
-    return node;  
   }
 
   protected void sizeIncrement() {
