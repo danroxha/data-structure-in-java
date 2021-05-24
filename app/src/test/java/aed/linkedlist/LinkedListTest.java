@@ -33,10 +33,8 @@ public class LinkedListTest {
     
   @Test 
   public void shouldAddElementsOntheListLinked() {
-
     final int expectElementsInTheLinkedList = 3;
     assertEquals(linkedlist.length(), expectElementsInTheLinkedList);
-
   }
 
   @Test
@@ -82,7 +80,6 @@ public class LinkedListTest {
     final String element = "Rocha Silva";
     final boolean expect = false;
     assertEquals(linkedlist.contains(element), expect);
-    
   }
 
 
