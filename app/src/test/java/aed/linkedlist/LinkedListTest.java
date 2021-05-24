@@ -61,14 +61,13 @@ public class LinkedListTest {
   
   @Test
   public void shouldClearLinkedList() {
-    var cloneLinkedList = linkedlist.clone();
-    cloneLinkedList.clear();
-
+    linkedlist.clear();
+    
     final boolean empty = true;
     final int length = 0;
 
-    assertEquals(cloneLinkedList.isEmpty(), empty);
-    assertEquals(cloneLinkedList.length(), length);
+    assertEquals(linkedlist.isEmpty(), empty);
+    assertEquals(linkedlist.length(), length);
   }
 
   @Test
@@ -92,17 +91,17 @@ public class LinkedListTest {
     final String element = "Rocha";
     final boolean expect = true;
     assertEquals(linkedlist.contains(element, (a, b) -> a.equals(b)), expect);
-
   }
 
   @Test
   public void shouldAddInTheCustomIndexInTheLinkedList() {
-    var cloneLinkedList = linkedlist.clone();
+    
     var element = "Pereira";
     var index = 2;
-    cloneLinkedList.add(index, element);
+
+    linkedlist.add(index, element);
     
-    assertEquals(cloneLinkedList.get(index), element);
+    assertEquals(linkedlist.get(index), element);
   }
 
   @Test
@@ -122,22 +121,20 @@ public class LinkedListTest {
 
   @Test
   public void shouldRemoveTheElementLinkedList() {
-    var cloneLinkedList = linkedlist.clone();
-    var expectLength = cloneLinkedList.length() - 1;
-    cloneLinkedList.remove(0);
+    
+    var expect = linkedlist.length() - 1;
+    linkedlist.remove(0);
 
-    assertEquals(cloneLinkedList.length(), expectLength);
+    assertEquals(linkedlist.length(), expect);
   }
 
   @Test
   public void shouldUpdateElementValueInTheLinkedList() {
-    
-    var cloneLinkedList = linkedlist.clone();
     var value = "Pereira";
     var index = 1;
 
-    cloneLinkedList.set(index, value);
-    assertEquals(cloneLinkedList.get(index), value);
+    linkedlist.set(index, value);
+    assertEquals(linkedlist.get(index), value);
   }
 
   @Test
