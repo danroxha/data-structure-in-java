@@ -39,22 +39,42 @@ public class Tree<T> {
   }
 
   public void insert(T value) throws ComparableNotFoundException {
-
+    
     if(comparator == null) setComparatorDefault(value);
+    if(value == null) return; 
 
-    if(value == null) return;
-
-    if(comparator == null) 
-      throw new ComparableNotFoundException();
+    var newNode = new Node<T>(value);
+    sizeIncrement();
 
     if(root == null) {
-      root = new Node<T>(value);
-      sizeIncrement();
+      root = newNode;
       return;
     }
-    
-    recursiveInsert(root, value);
-    sizeIncrement();
+
+    var current = root;
+    var parent = current;
+
+    while(true) {
+      
+      parent = current;
+      
+      if(comparator.apply((T)value, (T)current.getValue()) < 0) {
+        current = current.getNodeReferenceLeft();
+
+        if(current == null) {
+          parent.setNodeReferenceLeft(newNode);
+          return;
+        }
+      }
+      else {
+        current = current.getNodeReferenceRight();
+
+        if(current == null) {
+          parent.setNodeReferenceRight(newNode);
+          return;
+        }
+      }
+    }
   }
 
   public boolean isEmpty() {
@@ -133,29 +153,6 @@ public class Tree<T> {
     printTreeOrder(tree.getNodeReferenceLeft(), ++level, "left");
     System.out.println(String.format("%s %s : %s", "-".repeat(level), tree.getValue(), dir));
     printTreeOrder(tree.getNodeReferenceRight(), ++level, "right");
-  }
-
-  private void recursiveInsert(Node node, T value) {
-    
-    if(node == null) return;
-    
-    Boolean valueIsLess = comparator.apply((T)value, (T)node.getValue()) < 0;
-    if(valueIsLess) {
-      if(node.getNodeReferenceLeft() != null) {
-        recursiveInsert(node.getNodeReferenceLeft(), value);
-      }
-      else {
-        node.setNodeReferenceLeft(new Node<T>(value));
-      }
-    }
-    else {
-      if(node.getNodeReferenceRight() != null) {
-        recursiveInsert(node.getNodeReferenceRight(), value);
-      }
-      else {
-        node.setNodeReferenceRight(new Node<T>(value));
-      }
-    }
   }
   
   private Node recursiveRemove(Node node, T value) throws ComparableNotFoundException {
