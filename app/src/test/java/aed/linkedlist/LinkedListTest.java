@@ -102,6 +102,17 @@ public class LinkedListTest {
   }
 
   @Test
+  public void shouldConcatLinkedList() {
+    var linkedlistA = new LinkedList<Integer>(1, 2, 3, 4);
+    var linkedlistB = new LinkedList<Integer>(5, 6, 7, 8);
+    var expect = linkedlistA.length() + linkedlistB.length();
+
+    linkedlistA.concat(linkedlistB);
+    
+    assertEquals(linkedlistA.length(), expect);
+  }
+
+  @Test
   public void shouldReturnIndexOfElementInTheLinkedList() {
     var element = "Rocha";
 
