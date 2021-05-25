@@ -82,7 +82,6 @@ public class LinkedListTest {
     assertEquals(linkedlist.contains(element), expect);
   }
 
-
   @Test
   public void shouldReturnIfCustomContainsElementWithFalse() {
     final String element = "Rocha";
