@@ -64,6 +64,25 @@ public class LinkedList <T> extends AbstractLinkedList <T>  {
     
     return cloneLinkedList;
   }
+
+  public void concat(LinkedList<T>... linkedlist) {
+    
+    if(linkedlist == null) return;
+
+    for(var list : linkedlist) {
+
+      if(this == list) {
+        list = new LinkedList<T>(list);
+      }
+
+      var nextNode = list.firstNode;
+    
+      while(nextNode != null) {
+        add(nextNode.getValue());
+        nextNode = nextNode.getNodeReferenceRight();
+      }  
+    } 
+  }
   
   public T get(int index) throws IndexOutOfBoundsException {
     
