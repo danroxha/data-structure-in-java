@@ -4,15 +4,14 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-import aed.tree.Tree;
-import aed.tree.exceptions.ComparableNotFoundException;
+import util.People;
 
 public class TreeTest {
 
   Tree<String> tree;
 
   @Before
-  public void initialize() throws ComparableNotFoundException {
+  public void initialize() {
     tree = new Tree<>();
     tree.insert("Daniel");
     tree.insert("Rocha");
@@ -42,7 +41,7 @@ public class TreeTest {
 
   @Test
   public void verifyIfTheMethodReplaceChangeValuesInTheTree() 
-    throws ComparableNotFoundException {
+    throws Exception {
     
     var expectTrue = true;
     var expectFalse = false;
@@ -59,5 +58,28 @@ public class TreeTest {
     var list = tree.toLinkedList();
 
     assertEquals(list.length(), tree.size());
+  }
+
+  @Test
+  public void shouldStoreAnObjectInTheTree() {
+    var tree = new Tree<People>();
+    final var elementsNumber = 5;
+    for(int i = 0; i < elementsNumber; i++) {
+      tree.insert(new People("Rocha" + i, "Silva" + i ));
+    }
+
+    assertEquals(tree.size(), elementsNumber);
+  }
+
+  @Test
+  public void ShouldStoreObjectsInTheTreeWithCustomComparator() {
+    var tree = new Tree<People>((a, b) -> a.getLastName().compareTo(b.getLastName()));
+    
+    final var elementsNumber = 5;
+    for(int i = 0; i < elementsNumber; i++) {
+      tree.insert(new People("Rocha" + i, "Silva" + i ));
+    }
+
+    assertEquals(tree.size(), elementsNumber);
   }
 }

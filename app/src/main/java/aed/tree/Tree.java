@@ -1,10 +1,7 @@
 package aed.tree;
 
-import java.util.function.BiFunction;
+import java.util.Comparator;
 import java.util.function.Consumer;
-import java.util.function.Predicate;
-
-import aed.tree.exceptions.ComparableNotFoundException;
 import aed.util.Node;
 import aed.linkedlist.LinkedList;
 
@@ -12,18 +9,32 @@ public class Tree<T> {
   
   protected Node<T> root = null;
   protected int sizeTree = 0;
-  protected BiFunction<T, T, Integer> comparator = null;
   protected LinkedList<T> list = null;
+  private final Comparator<? super T> comparator;
+  
+  public Tree() {
+    comparator = null;
+  }
+
+  public Tree(Comparator<? super T> comparator) {
+    this.comparator = comparator;
+  }
+
+  final int compare(Object valueA, Object valueB) {
+    return comparator == null 
+      ? ((Comparable<? super T>)valueA).compareTo((T)valueB)
+      : comparator.compare((T)valueA, (T)valueB);
+  }
 
   public Boolean contains(T value) {
     
     var current = root;
 
     while(current != null) {
-      if(comparator.apply((T)value, (T)current.getValue()) < 0) {
+      if(compare(value, current.getValue()) < 0) {
         current = current.getNodeReferenceLeft();
       }
-      else if(comparator.apply((T)value, (T)current.getValue()) > 0) {
+      else if(compare(value, current.getValue()) > 0) {
         current = current.getNodeReferenceRight();
       }
       else {
@@ -38,9 +49,8 @@ public class Tree<T> {
     walk(root, action);
   }
 
-  public void insert(T value) throws ComparableNotFoundException {
+  public void insert(T value) {
     
-    if(comparator == null) setComparatorDefault(value);
     if(value == null) return; 
 
     var newNode = new Node<T>(value);
@@ -58,7 +68,7 @@ public class Tree<T> {
       
       parent = current;
       
-      if(comparator.apply((T)value, (T)current.getValue()) < 0) {
+      if(compare(value, current.getValue()) < 0) {
         current = current.getNodeReferenceLeft();
 
         if(current == null) {
@@ -85,14 +95,10 @@ public class Tree<T> {
     printTreeOrder(root, 0, "root");
   }
 
-  public void setComparator(BiFunction<T, T, Integer> comparator) {
-    this.comparator = comparator;
-  }
 
-  public T remove(T value) throws ComparableNotFoundException {
+  public T remove(T value) {
     
-    if(comparator == null) setComparatorDefault(value);
-
+  
     if(isEmpty()) return null;
       
     root = recursiveRemove(root, value);
@@ -102,7 +108,7 @@ public class Tree<T> {
     return (root != null) ? value : null;
   }
 
-  public Boolean replace(T valueA, T valueB) throws ComparableNotFoundException {
+  public Boolean replace(T valueA, T valueB) {
     if(!contains(valueA)) return false;
 
     remove(valueA);
@@ -133,18 +139,6 @@ public class Tree<T> {
     sizeTree--;
   }
 
-  private void setComparatorDefault(T value) throws ComparableNotFoundException {
-    
-    BiFunction<Integer, Integer, Integer> comparatorNumber = (a, b) -> a - b;
-    BiFunction<String, String, Integer> comparatorString = (a, b) -> a.compareTo(b);
-  
-    if(Number.class.isInstance(value))
-      this.comparator = (BiFunction<T, T, Integer>)comparatorNumber;
-    else if(String.class.isInstance(value))
-      this.comparator = (BiFunction<T, T, Integer>) comparatorString;
-    else
-      throw new ComparableNotFoundException();
-  }
 
   private void printTreeOrder(Node tree, Integer level, String dir) {
     
@@ -155,13 +149,13 @@ public class Tree<T> {
     printTreeOrder(tree.getNodeReferenceRight(), ++level, "right");
   }
   
-  private Node recursiveRemove(Node node, T value) throws ComparableNotFoundException {
+  private Node<T> recursiveRemove(Node<T> node, T value) {
     if(node == null) return null;
       
-    if(comparator.apply(value, (T)node.getValue()) < 0) {
+    if(compare(value, node.getValue()) < 0) {
       node.setNodeReferenceLeft(recursiveRemove(node.getNodeReferenceLeft(), value));
     }
-    else if(comparator.apply(value, (T)node.getValue()) > 0) {
+    else if(compare(value, node.getValue()) > 0) {
       node.setNodeReferenceRight(recursiveRemove(node.getNodeReferenceRight(), value));
     }
     else {
@@ -169,8 +163,8 @@ public class Tree<T> {
       if(node.getNodeReferenceLeft() == null) return node.getNodeReferenceRight();
       else if(node.getNodeReferenceRight() == null) return node.getNodeReferenceLeft();
       else {
-        Node successorNode = searchForSuccessorNode(node.getNodeReferenceRight());
-        node.setValue(successorNode.getValue());
+        Node<T> successorNode = searchForSuccessorNode(node.getNodeReferenceRight());
+        node.setValue((T)successorNode.getValue());
         node.setNodeReferenceRight(recursiveRemove(successorNode, (T)node.getValue()));
       }
     }
@@ -178,7 +172,7 @@ public class Tree<T> {
     return node;
   }
    
-  private Node searchForSuccessorNode(Node node){
+  private Node<T> searchForSuccessorNode(Node<T> node){
     while(node.getNodeReferenceLeft() != null){
       node = node.getNodeReferenceLeft();
     }
