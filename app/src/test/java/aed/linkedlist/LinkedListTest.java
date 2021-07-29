@@ -169,4 +169,9 @@ public class LinkedListTest {
       linkedlist.set(invalidIndex, element);
     });
   }
+
+  @Test
+  public void shouldRunningInteratorForEach() {
+    for(var value : linkedlist) {}
+  }
 }

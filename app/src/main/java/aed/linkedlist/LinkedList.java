@@ -2,8 +2,10 @@ package aed.linkedlist;
 
 import aed.util.Node;
 import aed.util.AbstractLinkedList;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class LinkedList <T> extends AbstractLinkedList <T>  {
+public class LinkedList <T> extends AbstractLinkedList <T> implements Iterable<T> {
   
   public LinkedList(){}
 
@@ -169,4 +171,30 @@ public class LinkedList <T> extends AbstractLinkedList <T>  {
     
     return (T)oldValue;
   }
+
+  @Override
+  public Iterator<T> iterator() {
+    return new Iterator<T>() {
+
+      private Node target = firstNode;
+
+      @Override
+      public boolean hasNext() {
+        return target != null;
+      }
+  
+      @Override
+      public T next() {
+        if (!hasNext()) {
+          throw new NoSuchElementException();
+        }
+
+        var value = (T)target.getValue();
+        target = target.getNodeReferenceRight();
+        
+        return value;
+      }
+    };
+  }
+
 }
