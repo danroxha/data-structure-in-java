@@ -14,9 +14,10 @@ public class HashTableTest {
 
   @Before
   public void initialize() {
-    table = new HashTable<String, String>();
-    table.put("name", "Daniel");
-    table.put("last", "Rocha");
+    table = new HashTable<String, String>(){{
+      put("name", "Daniel");
+      put("last", "Rocha");
+    }};
   }
 
   @Test
