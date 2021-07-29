@@ -11,6 +11,11 @@ public class HashTable<K, V> {
   public HashTable() {}
 
 	public V put(K key, V value) {
+    
+    if(containsKey(key)) {
+      replace(key, value);
+      return value;
+    }
 
     var index = calculateIndex(key);
     Entry<K, V> entry = new Entry<K, V>(key, value);
