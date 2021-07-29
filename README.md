@@ -8,3 +8,4 @@ Revisão da matéria de Algoritmo e Estrutura de Dados I (AED).
 - Fila
 - Pilha
 - Árvore
+- Tabela Hash
