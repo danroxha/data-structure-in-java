@@ -18,7 +18,7 @@ public class HashTable<K, V> {
     }
 
     var index = calculateIndex(key);
-    Entry<K, V> entry = new Entry<K, V>(key, value);
+    var entry = new Entry<K, V>(key, value);
 
     if(table[index] == null) {
       table[index] = new LinkedList<Entry<K, V>>();
