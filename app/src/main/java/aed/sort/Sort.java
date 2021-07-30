@@ -5,25 +5,25 @@ import java.util.Comparator;
 
 public class Sort {
 
-  public static <T>void quicksort(T[] collection, Comparator<? super T> comparator) {
-    sort(collection, 0, collection.length - 1, comparator);
+  public static <T>void quicksort(List<T> collection, Comparator<? super T> comparator) {
+    sort(collection, 0, collection.size() - 1, comparator);
   }
           
-  public static <T>void cocktail(T[] collection, Comparator<? super T> comparator) {
+  public static <T>void cocktail(List<T> collection, Comparator<? super T> comparator) {
     
     var low = 0; 
-    var high = collection.length - 1;
+    var high = collection.size() - 1;
     
     while (low < high) {
       
       for (var i = low; i < high; i++) {
         
-        var diff = comparator.compare(collection[i], collection[i + 1]);
+        var diff = comparator.compare(collection.get(i), collection.get(i + 1));
         
         if (diff > 0) {
-          var swap = collection[i];
-          collection[i] = collection[i + 1];
-          collection[i + 1] = swap;
+          var swap = collection.get(i);
+          collection.set(i, collection.get(i + 1));
+          collection.set(i + 1, swap);
         }
       }
       
@@ -31,12 +31,12 @@ public class Sort {
         
       for (var i = high; i > low; i--) {
         
-        var diff = comparator.compare(collection[i], collection[i - 1]);
+        var diff = comparator.compare(collection.get(i), collection.get(i - 1));
 
         if (diff < 0) {
-          var swap = collection[i];
-          collection[i] = collection[i - 1];
-          collection[i - 1] = swap;
+          var swap = collection.get(i);
+          collection.set(i, collection.get(i - 1));
+          collection.set(i - 1, swap);
         }
       }
 
@@ -46,28 +46,28 @@ public class Sort {
 
 
   /**QuickSort start*/
-	private static <T>int partition(T collection[], int low, int high, Comparator<? super T> comparator) {
-		var pivot = collection[high];
+	private static <T>int partition(List<T> collection, int low, int high, Comparator<? super T> comparator) {
+		var pivot = collection.get(high);
 		var i = (low - 1);
 		
     for (var j = low; j < high; j++) {
-      var diff = comparator.compare(collection[j], pivot);
+      var diff = comparator.compare(collection.get(j), pivot);
 			if (diff <= 0) {
 				i++;
-				var swap = collection[i];
-				collection[i] = collection[j];
-				collection[j] = swap;
+				var swap = collection.get(i);
+				collection.set(i, collection.get(j));
+				collection.set(j, swap);
 			}
 		}
 
-		var swap = collection[i + 1];
-		collection[i + 1] = collection[high];
-		collection[high] = swap;
+		var swap = collection.get(i + 1);
+		collection.set(i + 1, collection.get(high));
+		collection.set(high, swap);
 
 		return i + 1;
 	}
 
-	private static <T>void sort(T collection[], int low, int high, Comparator<? super T> comparator) {
+	private static <T>void sort(List<T> collection, int low, int high, Comparator<? super T> comparator) {
 		if (low > high) return;
 
 		var middle = partition(collection, low, high, comparator);
