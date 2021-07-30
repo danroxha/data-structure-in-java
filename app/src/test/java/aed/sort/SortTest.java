@@ -49,4 +49,16 @@ public class SortTest {
     Sort.<String>cocktail(listDesorderString, (a, b) -> a.compareTo(b));
     assertEquals(listOrderString, listDesorderString);
   }
+
+  @Test
+  public void shouldSortIntegerListWithHeapSort() {
+    Sort.<Integer>heapsort(listDesorderInteger, (a, b) -> a - b);
+    assertEquals(listOrderInteger, listDesorderInteger);
+  }
+
+  @Test
+  public void shouldSortStringListWithHeapSort() {
+    Sort.<String>heapsort(listDesorderString, (a, b) -> a.compareTo(b));
+    assertEquals(listOrderString, listDesorderString);
+  }
 }
