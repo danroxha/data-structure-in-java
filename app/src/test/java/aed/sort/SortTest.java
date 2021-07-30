@@ -28,13 +28,13 @@ public class SortTest {
 
   @Test
   public void shouldSortIntegerListWithQuickSort() {
-    Sort.<Integer>quickSort(listDesorderInteger, (a, b) -> a - b);  
+    Sort.<Integer>quicksort(listDesorderInteger, (a, b) -> a - b);  
     assertArrayEquals(listOrderInteger, listDesorderInteger);
   }
 
   @Test
   public void shouldSortStringListWithQuickSort() {
-    Sort.<String>quickSort(listDesorderString, (a, b) -> a.compareTo(b));
+    Sort.<String>quicksort(listDesorderString, (a, b) -> a.compareTo(b));
     assertArrayEquals(listOrderString, listDesorderString);
   }
   

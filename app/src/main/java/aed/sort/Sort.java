@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 public class Sort {
 
-  public static <T>void quickSort(T[] collection, Comparator<? super T> comparator) {
+  public static <T>void quicksort(T[] collection, Comparator<? super T> comparator) {
     sort(collection, 0, collection.length - 1, comparator);
   }
           
