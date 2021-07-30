@@ -44,9 +44,57 @@ public class Sort {
     }
   }
 
+  /**HeapSort start*/
   public static <T>void heapsort(List<T> collection, Comparator<? super T> comparator) {
 
+    var middle = (collection.size() - 1) / 2;
+    for(var i = middle; i >= 0; i--) {
+      heap(collection, i, collection.size() - 1, comparator);
+    }
+
+    var high = collection.size() - 1;
+    for(var i = high; i >= 1; i--) {
+
+      final int INITIAL_INDEX = 0;
+
+      var swap = collection.get(INITIAL_INDEX);
+      collection.set(INITIAL_INDEX, collection.get(i));
+      collection.set(i, swap);
+
+      heap(collection, INITIAL_INDEX, i - 1, comparator);
+    }
   }
+
+  public static <T>void heap(List<T> collection, int low, int high, Comparator<? super T> comparator) {
+
+    var swap = collection.get(low);
+    var indexChild = low * 2 + 1;
+
+    while(indexChild <= high) {
+      if(indexChild < high) {
+
+        var diff = comparator.compare(collection.get(indexChild), collection.get(indexChild + 1));
+
+        if(diff < 0) {
+          indexChild++;
+        }
+      }
+
+      var diff = comparator.compare(swap, collection.get(indexChild));
+
+      if(diff < 0) {
+        collection.set(low, collection.get(indexChild));
+        low = indexChild;
+        indexChild = 2 * low + 1;
+      }
+      else {
+        indexChild = high + 1;
+      }
+    }
+
+    collection.set(low, swap);
+  }
+  /**HeapSort end*/
 
   /**QuickSort start*/
 	private static <T>int partition(List<T> collection, int low, int high, Comparator<? super T> comparator) {
