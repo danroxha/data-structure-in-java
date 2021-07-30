@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import aed.sort.Sort;
+import static aed.sort.Sort.quicksort;
+import static aed.sort.Sort.cocktail;
+import static aed.sort.Sort.heapsort;
 
 public class SortTest { 
   
@@ -29,37 +31,37 @@ public class SortTest {
 
   @Test
   public void shouldSortIntegerListWithQuickSort() {
-    Sort.<Integer>quicksort(listDesorderInteger, (a, b) -> a - b);  
+    quicksort(listDesorderInteger, (a, b) -> a - b);  
     assertEquals(listOrderInteger, listDesorderInteger);
   }
 
   @Test
   public void shouldSortStringListWithQuickSort() {
-    Sort.<String>quicksort(listDesorderString, (a, b) -> a.compareTo(b));
+    quicksort(listDesorderString, (a, b) -> a.compareTo(b));
     assertEquals(listOrderString, listDesorderString);
   }
   
   @Test
   public void shouldSortIntegerListWithCocktail() {
-    Sort.<Integer>cocktail(listDesorderInteger, (a, b) -> a - b);  
+    cocktail(listDesorderInteger, (a, b) -> a - b);  
     assertEquals(listOrderInteger, listDesorderInteger);
   }
 
   @Test
   public void shouldSortStringListWithCocktail() {
-    Sort.<String>cocktail(listDesorderString, (a, b) -> a.compareTo(b));
+    cocktail(listDesorderString, (a, b) -> a.compareTo(b));
     assertEquals(listOrderString, listDesorderString);
   }
 
   @Test
   public void shouldSortIntegerListWithHeapSort() {
-    Sort.<Integer>heapsort(listDesorderInteger, (a, b) -> a - b);
+    heapsort(listDesorderInteger, (a, b) -> a - b);
     assertEquals(listOrderInteger, listDesorderInteger);
   }
 
   @Test
   public void shouldSortStringListWithHeapSort() {
-    Sort.<String>heapsort(listDesorderString, (a, b) -> a.compareTo(b));
+    heapsort(listDesorderString, (a, b) -> a.compareTo(b));
     assertEquals(listOrderString, listDesorderString);
   }
 }
