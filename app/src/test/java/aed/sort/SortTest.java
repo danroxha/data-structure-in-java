@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import aed.sort.Sort;
 
@@ -19,11 +20,11 @@ public class SortTest {
 
   @Before   
   public void setUp() {
-    listOrderInteger = new ArrayList<>(){{ add(0); add(1); add(2); add(3); add(4); add(5); }};
-    listDesorderInteger = new ArrayList<>(){{ add(5); add(0); add(3); add(4); add(2); add(1); }};
+    listOrderInteger = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+    listDesorderInteger = new ArrayList<>(Arrays.asList(4, 1, 2, 5, 3));
     
-    listOrderString = new ArrayList<>(){{ add("daniel"); add("rocha"); add("silva"); }};
-    listDesorderString = new ArrayList<>(){{ add("silva"); add("daniel"); add("rocha"); }};     
+    listOrderString = new ArrayList<>(Arrays.asList("daniel", "rocha", "silva"));
+    listDesorderString = new ArrayList<>(Arrays.asList("rocha", "silva", "daniel"));
   }
 
   @Test
