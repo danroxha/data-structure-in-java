@@ -16,9 +16,10 @@ public class Sort {
     
     while (low < high) {
       
-      
-      for (int i = low; i < high; i = i + 1) {
+      for (var i = low; i < high; i++) {
+        
         var diff = comparator.compare(collection[i], collection[i + 1]);
+        
         if (diff > 0) {
           var swap = collection[i];
           collection[i] = collection[i + 1];
@@ -28,7 +29,7 @@ public class Sort {
       
       high = high - 1;
         
-      for (int i = high; i > low; i = i - 1) {
+      for (var i = high; i > low; i--) {
         
         var diff = comparator.compare(collection[i], collection[i - 1]);
 
