@@ -44,55 +44,52 @@ public class Sort {
     }
   }
 
-  /**HeapSort start*/
   public static <T>void heapsort(List<T> collection, Comparator<? super T> comparator) {
-
-    var middle = (collection.size() - 1) / 2;
+    
+    var middle = collection.size() / 2 - 1;
     for(var i = middle; i >= 0; i--) {
-      heap(collection, i, collection.size() - 1, comparator);
+      heap(collection, collection.size(), i, comparator);
     }
 
     var high = collection.size() - 1;
-    for(var i = high; i >= 1; i--) {
-
-      final int INITIAL_INDEX = 0;
-
-      var swap = collection.get(INITIAL_INDEX);
-      collection.set(INITIAL_INDEX, collection.get(i));
+    for(var i = high; i > 0; i--) {
+      var swap = collection.get(0);
+      collection.set(0, collection.get(i));
       collection.set(i, swap);
-
-      heap(collection, INITIAL_INDEX, i - 1, comparator);
+      
+      heap(collection, i, 0, comparator);
     }
   }
 
-  public static <T>void heap(List<T> collection, int low, int high, Comparator<? super T> comparator) {
+  private static <T>void heap(List<T> collection, int length, int low, Comparator<? super T> comparator) {
+    
+    var root  = low;
+    var left  = 2 * low + 1;
+    var right = 2 * low + 2;
 
-    var swap = collection.get(low);
-    var indexChild = low * 2 + 1;
-
-    while(indexChild <= high) {
-      if(indexChild < high) {
-
-        var diff = comparator.compare(collection.get(indexChild), collection.get(indexChild + 1));
-
-        if(diff < 0) {
-          indexChild++;
-        }
-      }
-
-      var diff = comparator.compare(swap, collection.get(indexChild));
-
-      if(diff < 0) {
-        collection.set(low, collection.get(indexChild));
-        low = indexChild;
-        indexChild = 2 * low + 1;
-      }
-      else {
-        indexChild = high + 1;
-      }
+    var leftPointerIsInsideTheArray = left < length;
+    
+    if(leftPointerIsInsideTheArray) {
+      var leftBiggerThanRoot = comparator.compare(collection.get(left), collection.get(root)) > 0;
+      if(leftBiggerThanRoot)
+        root = left;
     }
 
-    collection.set(low, swap);
+    var rightPointerIsInsideTheArray = right < length;
+
+    if(rightPointerIsInsideTheArray) {
+      var rightBiggerThanRoot = comparator.compare(collection.get(right), collection.get(root)) > 0;
+      if(rightBiggerThanRoot)
+        root = right;
+    }
+
+    if(root != low) {
+      var swap = collection.get(low);
+      collection.set(low, collection.get(root));
+      collection.set(root, swap);
+  
+      heap(collection, length, root, comparator);
+    }
   }
   /**HeapSort end*/
 
