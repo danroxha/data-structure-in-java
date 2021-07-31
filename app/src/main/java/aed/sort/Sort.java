@@ -91,7 +91,6 @@ public class Sort {
       heap(collection, length, root, comparator);
     }
   }
-  /**HeapSort end*/
 
   /**QuickSort start*/
 	private static <T>int partition(List<T> collection, int low, int high, Comparator<? super T> comparator) {
