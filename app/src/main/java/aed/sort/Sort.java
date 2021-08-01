@@ -6,7 +6,7 @@ import java.util.Comparator;
 public class Sort {
 
   public static <T>void quicksort(List<T> collection, Comparator<? super T> comparator) {
-    sort(collection, 0, collection.size() - 1, comparator);
+    qsort(collection, 0, collection.size() - 1, comparator);
   }
           
   public static <T>void cocktail(List<T> collection, Comparator<? super T> comparator) {
@@ -114,13 +114,13 @@ public class Sort {
 		return i + 1;
 	}
 
-	private static <T>void sort(List<T> collection, int low, int high, Comparator<? super T> comparator) {
+	private static <T>void qsort(List<T> collection, int low, int high, Comparator<? super T> comparator) {
 		if (low > high) return;
 
 		var middle = partition(collection, low, high, comparator);
 
-		sort(collection, low, middle - 1, comparator);
-		sort(collection, middle + 1, high, comparator);
+		qsort(collection, low, middle - 1, comparator);
+		qsort(collection, middle + 1, high, comparator);
 	}
   /**QuickSort end*/
 }
