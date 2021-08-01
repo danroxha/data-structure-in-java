@@ -1,7 +1,7 @@
-# Estrutura de dados em Java
+# Algoritmo e Estrutura de dados em Java
 
 ## Objetivo
-Revisão da matéria de Algoritmo e Estrutura de Dados I (AED).
+Revisão da matéria de Algoritmo e Estrutura de Dados I e II (AED).
 
 ## Estruturas:
 - Lista duplamente encadeada;
@@ -9,3 +9,8 @@ Revisão da matéria de Algoritmo e Estrutura de Dados I (AED).
 - Pilha
 - Árvore
 - Tabela Hash
+
+## Algoritmos:
+- Cocktail
+- Heapsort
+- Quicksort
