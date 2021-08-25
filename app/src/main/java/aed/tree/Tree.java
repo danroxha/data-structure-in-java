@@ -2,8 +2,8 @@ package aed.tree;
 
 import java.util.Comparator;
 import java.util.function.Consumer;
-import aed.util.Node;
 import aed.linkedlist.LinkedList;
+import static aed.util.AbstractLinkedList.Node;
 
 public class Tree<T> {
   

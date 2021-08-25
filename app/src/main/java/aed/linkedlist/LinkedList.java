@@ -1,6 +1,5 @@
 package aed.linkedlist;
 
-import aed.util.Node;
 import aed.util.AbstractLinkedList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;

@@ -107,5 +107,45 @@ public abstract class AbstractLinkedList<T> {
 
   protected void sizeDecrement() {
     size--;
-  }  
+  }
+
+  public static class Node<T> {
+    protected T value;
+    protected Node<T> left;
+    protected Node<T> right;
+
+    public Node() {}
+    public Node(T value) {
+      this.value = value;
+    }
+
+    public void setValue(T value) {
+      this.value = value;
+    }
+
+    public T getValue() {
+      return value;
+    }
+
+    public void setNodeReferenceLeft(Node<T> left) {
+      this.left = left;
+    }
+
+    public void setNodeReferenceRight(Node<T> right) {
+      this.right = right;
+    }
+
+    public Node<T> getNodeReferenceLeft() {
+      return left;
+    }
+
+    public Node<T> getNodeReferenceRight() {
+      return right;
+    }
+
+    public void clearReference() {
+      left = null;
+      right = null;
+    }
+  }
 }

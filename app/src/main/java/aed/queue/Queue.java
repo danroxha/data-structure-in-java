@@ -2,7 +2,6 @@
 package aed.queue;
 
 import aed.util.AbstractLinkedList;
-import aed.util.Node;
 
 public class Queue<T> extends AbstractLinkedList<T> {
     

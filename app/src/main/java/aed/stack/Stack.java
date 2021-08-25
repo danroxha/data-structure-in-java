@@ -1,7 +1,6 @@
 package aed.stack;
 
 import aed.util.AbstractLinkedList;
-import aed.util.Node;
 
 public class Stack<T> extends AbstractLinkedList<T> {
   
