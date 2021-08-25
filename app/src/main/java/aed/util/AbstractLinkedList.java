@@ -18,7 +18,7 @@ public abstract class AbstractLinkedList<T> {
       return value;
     }
   
-    Node newNode = new Node<T>(value);
+    var newNode = new Node<T>(value);
     
     lastNode.setNodeReferenceRight(newNode);
     newNode.setNodeReferenceLeft(lastNode);
@@ -30,9 +30,9 @@ public abstract class AbstractLinkedList<T> {
   
   public void clear() {
     
-    Node nextNode = firstNode;
+    var nextNode = firstNode;
     while(nextNode != null) {
-      Node targetNode = nextNode;
+      var targetNode = nextNode;
       nextNode = nextNode.getNodeReferenceRight();
       targetNode.clearReference();
     }
@@ -48,7 +48,7 @@ public abstract class AbstractLinkedList<T> {
     
     if(value == null) return false;
     
-    Node node = firstNode;
+    var node = firstNode;
     while(node != null) {
       if(value.equals((T) node.getValue())) {
         return true;
@@ -61,7 +61,7 @@ public abstract class AbstractLinkedList<T> {
   
   public Boolean contains(T value, BiPredicate comparator) {
     
-    Node node = firstNode;
+    var node = firstNode;
     while(node != null) {
       if(comparator.test(value, node.getValue())) {
         return true;
