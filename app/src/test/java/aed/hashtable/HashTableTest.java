@@ -1,7 +1,5 @@
 package aed.hashtable;
 
-import aed.hashtable.HashTable;
-
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -10,7 +8,7 @@ import static org.junit.Assert.assertFalse;
 
 
 public class HashTableTest {
-  HashTable table;
+  HashTable<String, String> table;
 
   @Before
   public void initialize() {

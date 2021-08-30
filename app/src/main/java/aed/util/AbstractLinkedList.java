@@ -59,7 +59,7 @@ public abstract class AbstractLinkedList<T> {
     return false;
   }
   
-  public Boolean contains(T value, BiPredicate comparator) {
+  public Boolean contains(T value, BiPredicate<T, T> comparator) {
     
     var node = firstNode;
     while(node != null) {

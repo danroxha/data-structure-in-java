@@ -139,8 +139,7 @@ public class Tree<T> {
     sizeTree--;
   }
 
-
-  private void printTreeOrder(Node tree, Integer level, String dir) {
+  private void printTreeOrder(Node<T> tree, Integer level, String dir) {
     
     if(tree == null) return;
     

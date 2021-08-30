@@ -6,7 +6,7 @@ import aed.linkedlist.LinkedList;
 public class HashTable<K, V> {
   
   private final int SIZE_HASH_TABLE_ARRAY = 101;
-  private LinkedList[] table =  new LinkedList[SIZE_HASH_TABLE_ARRAY];
+  private LinkedList<Entry<K, V>>[] table = new LinkedList[SIZE_HASH_TABLE_ARRAY];
 
   public HashTable() {}
 
@@ -135,8 +135,6 @@ public class HashTable<K, V> {
     private K key;
     private V value;
     
-    public Entry(){}
-  
     public Entry(K key, V value) {
       this.key = key;
       this.value = value;

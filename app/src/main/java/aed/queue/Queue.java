@@ -7,6 +7,7 @@ public class Queue<T> extends AbstractLinkedList<T> {
     
   public Queue() {}
   
+  @SafeVarargs
   public Queue(T... values) {
     for(var value : values) {
       add(value);
@@ -28,7 +29,7 @@ public class Queue<T> extends AbstractLinkedList<T> {
       return null;
     }
 
-    Node targetNode = firstNode;
+    var targetNode = firstNode;
     
     firstNode = firstNode.getNodeReferenceRight();
 
@@ -39,7 +40,7 @@ public class Queue<T> extends AbstractLinkedList<T> {
 
     sizeDecrement();
 
-    return (T)targetNode.getValue();
+    return targetNode.getValue();
   }
   
   @Override

@@ -8,6 +8,7 @@ public class LinkedList <T> extends AbstractLinkedList <T> implements Iterable<T
   
   public LinkedList(){}
 
+  @SafeVarargs
   public LinkedList(T... values) {
     for(var value : values) {
       add(value);
@@ -17,7 +18,7 @@ public class LinkedList <T> extends AbstractLinkedList <T> implements Iterable<T
   public LinkedList(LinkedList<T> linkedlist) {
     if(linkedlist == null) return;
     
-    Node nextNode = linkedlist.firstNode;
+    Node<T> nextNode = linkedlist.firstNode;
     while(nextNode != null) {
       add((T)nextNode.getValue());
       nextNode = nextNode.getNodeReferenceRight();
@@ -31,10 +32,10 @@ public class LinkedList <T> extends AbstractLinkedList <T> implements Iterable<T
       return;
     } 
     
-    Node targetNode = searchIndexLeftOrRight(index);
-    Node newNode = new Node<T>(value);
+    var targetNode = searchIndexLeftOrRight(index);
+    var newNode = new Node<T>(value);
     
-    Node previousNode = targetNode.getNodeReferenceLeft();
+    var previousNode = targetNode.getNodeReferenceLeft();
     
     if(previousNode != null)
       previousNode.setNodeReferenceRight(newNode);
@@ -65,7 +66,7 @@ public class LinkedList <T> extends AbstractLinkedList <T> implements Iterable<T
     
     return cloneLinkedList;
   }
-
+  
   public void concat(LinkedList<T>... linkedlist) {
     
     if(linkedlist == null) return;
@@ -90,9 +91,9 @@ public class LinkedList <T> extends AbstractLinkedList <T> implements Iterable<T
     if(index >= length() || index < 0) 
       throw new IndexOutOfBoundsException(); 
 
-    Node target = searchIndexLeftOrRight(index);
+    var target = searchIndexLeftOrRight(index);
 
-    return (T) target.getValue();
+    return target.getValue();
   }
   
   public int indexOf(T value) {
@@ -100,7 +101,7 @@ public class LinkedList <T> extends AbstractLinkedList <T> implements Iterable<T
     if(value == null) return -1;
     
     int index = 0;    
-    Node nextNode = firstNode;
+    var nextNode = firstNode;
     
     while(nextNode != null) {
       
@@ -116,9 +117,9 @@ public class LinkedList <T> extends AbstractLinkedList <T> implements Iterable<T
   
   public T remove(int index) throws IndexOutOfBoundsException {
     
-    Node targetNode = searchIndexLeftOrRight(index);
-    Node previousNode = targetNode.getNodeReferenceLeft();
-    Node nextNode = targetNode.getNodeReferenceRight();
+    var targetNode = searchIndexLeftOrRight(index);
+    var previousNode = targetNode.getNodeReferenceLeft();
+    var nextNode = targetNode.getNodeReferenceRight();
 
     if(previousNode != null) 
       previousNode.setNodeReferenceRight(nextNode);
@@ -134,12 +135,12 @@ public class LinkedList <T> extends AbstractLinkedList <T> implements Iterable<T
     return (T) targetNode.getValue();
   }
   
-  private Node searchIndexLeftOrRight(int index) throws IndexOutOfBoundsException {
+  private Node<T> searchIndexLeftOrRight(int index) throws IndexOutOfBoundsException {
     if(index >= length() || index < 0) 
       throw new IndexOutOfBoundsException();
 
     Integer countIndex = 0;
-    Node targetNode = firstNode;
+    var targetNode = firstNode;
 
     if(index > length() / 2) {
       countIndex = length() - 1;
@@ -164,7 +165,7 @@ public class LinkedList <T> extends AbstractLinkedList <T> implements Iterable<T
     if(index < 0 || index >= length())
       throw new IndexOutOfBoundsException();
     
-    Node targetNode = searchIndexLeftOrRight(index);
+    var targetNode = searchIndexLeftOrRight(index);
     var oldValue  = targetNode.getValue();
     targetNode.setValue(value);
     
@@ -175,7 +176,7 @@ public class LinkedList <T> extends AbstractLinkedList <T> implements Iterable<T
   public Iterator<T> iterator() {
     return new Iterator<T>() {
 
-      private Node target = firstNode;
+      private Node<T> target = firstNode;
 
       @Override
       public boolean hasNext() {

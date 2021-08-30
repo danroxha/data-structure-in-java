@@ -6,6 +6,7 @@ public class Stack<T> extends AbstractLinkedList<T> {
   
   public Stack(){}
 
+  @SafeVarargs
   public Stack(T... values) {
     for(var value : values) {
       push(value);
@@ -44,7 +45,7 @@ public class Stack<T> extends AbstractLinkedList<T> {
       return null;
     }
     
-    Node targetNode = lastNode;
+    var targetNode = lastNode;
     
     lastNode = lastNode.getNodeReferenceLeft();
     if(lastNode != null) {
@@ -55,7 +56,7 @@ public class Stack<T> extends AbstractLinkedList<T> {
     
     sizeDecrement();
     
-    return (T) targetNode.getValue();
+    return targetNode.getValue();
   }
   
   public T peek() {

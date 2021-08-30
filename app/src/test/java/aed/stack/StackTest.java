@@ -1,11 +1,9 @@
 package aed.stack;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import aed.stack.Stack;
 
 public class StackTest {
   Stack<String> stack;

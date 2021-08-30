@@ -4,16 +4,14 @@
 package aed.linkedlist;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-import aed.linkedlist.LinkedList;
 
 public class LinkedListTest {
 
-  LinkedList linkedlist;
+  LinkedList<String> linkedlist;
 
   @Before
   public void initialize(){

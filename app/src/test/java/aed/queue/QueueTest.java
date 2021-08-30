@@ -8,10 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-import aed.queue.Queue;
 
 public class QueueTest {
-  Queue queue;
+  Queue<String> queue;
 
   @Before
   public void initialize() {
