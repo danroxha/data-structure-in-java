@@ -9,6 +9,7 @@ Revisão da matéria de Algoritmo e Estrutura de Dados I e II (AED).
 - Pilha
 - Árvore
 - Tabela Hash
+- Árvore Red-Black
 
 ## Algoritmos:
 - Cocktail
